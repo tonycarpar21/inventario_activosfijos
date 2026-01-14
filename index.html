@@ -1,0 +1,179 @@
+<!--
+=====================================================
+  SISTEMA DE INVENTARIO DE ACTIVOS FIJOS 2026
+  © DAS Logistics Solutions S.A.C
+  Autor: Anthony David Carranza Paredes
+
+  Uso exclusivo interno.
+  Prohibida su copia, modificación o distribución
+  sin autorización expresa del autor.
+=====================================================
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventario de Activos Fijos</title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<h2>📦 Inventario de Activos Fijos</h2>
+
+<!-- PASO 1 -->
+<div class="card inicio-box" id="inicioBox">
+  <label>DNI</label>
+  <input id="dniInput">
+
+  <label>Sede</label>
+  <input id="sedeInput">
+
+  <button id="btnContinuar" onclick="confirmarInicio()">Continuar</button>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+
+<div class="card" style="display:flex;justify-content:space-between">
+  <div>DNI: <b id="dniFijo"></b> | Sede: <b id="sedeFija"></b></div>
+  <div>Total activos: <b id="contador">0</b></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="mostrarTab('registro',this)">Registro</div>
+  <div class="tab" onclick="mostrarTab('multiple',this)">Múltiple</div>
+  <div class="tab" onclick="mostrarTab('lista',this)">Registros</div>
+</div>
+
+<!-- TAB REGISTRO -->
+<div id="tab-registro">
+
+<div class="card">
+  <h3>1️⃣ Identificación del activo</h3>
+  <div class="row">
+    <div>
+      <label>Código *</label>
+      <input id="codigo" required>
+    </div>
+    <div>
+      <label>Código antiguo</label>
+      <input id="codigoAntiguo">
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>2️⃣ Detalle del activo</h3>
+  <label>Descripción</label>
+  <input id="descripcion">
+
+  <div class="row">
+    <div><label>Marca</label><input id="marca"></div>
+    <div><label>Modelo</label><input id="modelo"></div>
+  </div>
+
+  <label>Número de serie</label>
+  <input id="serie">
+</div>
+
+<div class="card">
+  <h3>3️⃣ Características físicas del activo</h3>
+  <div class="row">
+    <div><label>Color</label><input id="color"></div>
+    <div><label>Material</label><input id="material"></div>
+  </div>
+
+  <label>Medidas</label>
+  <input id="medidas" placeholder="Largo x Ancho x Alto">
+</div>
+
+<div class="card">
+  <h3>4️⃣ Clasificación y estado del activo</h3>
+  <div class="row">
+    <div><label>Área</label><input id="area" list="listaAreas">
+<datalist id="listaAreas"></datalist></div>
+    <div><label>CeCo</label><input id="ceco" list="listaCecos">
+<datalist id="listaCecos"></datalist></div>
+  </div>
+
+  <label>Estado</label>
+  <select id="estado">
+    <option>BUENO</option>
+    <option>REGULAR</option>
+    <option>MALO</option>
+  </select>
+</div>
+
+<div class="card">
+  <h3>5️⃣ Foto del activo</h3>
+
+  <input 
+    type="file"
+    id="foto"
+    accept="image/*"
+    capture="environment"
+  >
+
+  <img 
+    id="previewFoto"
+    style="margin-top:10px;max-width:100%;border-radius:10px;display:none"
+  >
+</div>
+
+<div class="card">
+  <h3>6️⃣ Observaciones</h3>
+  <input id="obs">
+  <button onclick="guardar()">Guardar activo</button>
+  <div id="msgGuardado" style="display:none;color:#1d8f4f;font-weight:600;margin-top:10px">
+  ✔ Activo guardado correctamente
+</div>
+</div>
+
+</div>
+
+<!-- TAB MULTIPLE -->
+<div id="tab-multiple" class="hidden">
+
+  <div class="card">
+    <h3>📦 Activo base (último registrado)</h3>
+    <div id="activoBaseInfo"></div>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Campos variables</h3>
+    <div id="camposVariables"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔢 Cantidad de activos</h3>
+    <input type="number" id="cantidadMultiples" min="1" placeholder="">
+    <button onclick="generarMultiples()">Generar registros</button>
+  </div>
+
+  <div class="card hidden" id="listaMultiples">
+    <h3>✏️ Completar activos</h3>
+    <div id="multiplesForm"></div>
+    <button onclick="guardarMultiples()">Guardar activos</button>
+  </div>
+
+</div>
+
+<!-- TAB LISTA -->
+<div id="tab-lista" class="card hidden">
+  <button class="btn-export" onclick="exportar()">Exportar CSV</button>
+  <div id="lista"></div>
+</div>
+
+</div>
+
+<script src="trabajadores.js"></script>
+<script src="activos.js"></script>
+<script src="app.min.js"></script>
+
+</body>
+</html>
