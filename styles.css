@@ -12,6 +12,10 @@
 
 :root{
   --azul:#243a5e;
+  --azul-claro:#e0ebff;
+  --verde:#1d8f4f;
+  --amarillo:#f6c453;
+  --rojo:#c0392b;
   --gris:#f2f4f8;
   --gris2:#e3e7ee;
 }
@@ -30,6 +34,18 @@ h2{
   margin:10px 0 20px;
 }
 
+/* BOTONES */
+button{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:var(--azul);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:14px;
+}
+
 /* CONTENEDORES */
 .card{
   background:white;
@@ -43,8 +59,42 @@ h2{
   margin:0 0 12px;
   font-size:15px;
   color:var(--azul);
-  border-left:4px solid var(--azul);
+  border-left:4px solid var(--amarillo);
   padding-left:8px;
+}
+
+.btn-mic{
+  all: unset;
+
+  width:40px;
+  height:40px;
+
+  border-radius:50%;
+  background:var(--amarillo);
+  color:#243846;
+
+  font-size:20px;
+  cursor:pointer;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:0 3px 6px rgba(0,0,0,.25);
+}
+
+
+/* ✨ Brillo mientras escucha */
+.btn-mic.listening{
+  box-shadow:
+    0 0 0 4px rgba(246,196,83,.35),
+    0 0 18px rgba(246,196,83,.9);
+  transform:scale(1.08);
+}
+
+/* feedback táctil */
+.btn-mic:active{
+  transform:scale(0.92);
 }
 
 .hidden{display:none}
@@ -71,6 +121,22 @@ h2{
   word-break:break-word;
 }
 
+.progress-container{
+  width:100%;
+  height:10px;
+  background:#e6e6e6;
+  border-radius:8px;
+  overflow:hidden;
+  margin:10px 0 14px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:var(--amarillo);
+  transition:width .25s ease;
+}
+
 .registro-acciones{
   display:flex;
   gap:6px;
@@ -79,7 +145,6 @@ h2{
   font-size:18px;
 }
 
-/* TABS */
 .tabs{
   display:flex;
   background:white;
@@ -100,7 +165,7 @@ h2{
 
 .tab.active{
   background:white;
-  border-bottom:3px solid var(--azul);
+  border-bottom:3px solid var(--amarillo);
 }
 
 /* FORM */
@@ -131,31 +196,60 @@ input,select{
   font-size:14px;
 }
 
-/* BOTONES */
-button{
-  padding:14px;
-  border:none;
-  border-radius:10px;
-  background:var(--azul);
-  color:white;
-  font-weight:700;
-  cursor:pointer;
-  margin-top:14px;
-}
-
-input, select, button{
+input, select{
   min-height:48px;
   font-size:16px;
+}
+
+button:not(.btn-mic){
+  min-height:48px;
+  font-size:16px;
+}
+
+.nav-multiple{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin-top:12px;
+}
+
+.btn-nav{
+  width:34px;
+  height:34px;
+  min-height:34px;
+  padding:0;
+  border-radius:50%;
+  background:var(--amarillo);
+  color:white;
+  font-size:18px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 3px 6px rgba(0,0,0,.25);
+}
+
+.btn-nav:active{
+  transform:scale(0.9);
+  background:#e0ad3f;
 }
 
 .btn-export{
   background:var(--azul);
 }
 
+.btn-nav:disabled{
+  background:#f3d99a;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
 .btn-del{
   width:34px;
   height:34px;
-  background:#e5e7eb;
+  background:#fdecea;
+  color:var(--rojo);
   border:none;
   border-radius:6px;
   cursor:pointer;
@@ -171,7 +265,7 @@ input, select, button{
 .btn-edit{
   width:34px;
   height:34px;
-  background:#e0ebff;
+  background:var(--azul-claro);
   border:none;
   border-radius:6px;
   cursor:pointer;
@@ -189,16 +283,24 @@ input, select, button{
 }
 
 /* Botones principales largos */
-#tab-registro button,
-#tab-multiple button,
+/* Botones principales largos */
+#tab-registro > .card button:not(.btn-nav):not(.btn-mic),
+#tab-multiple > .card button:not(.btn-nav):not(.btn-mic),
 #tab-lista .btn-export{
   width:100%;
+  padding:14px;
+  min-height:48px;
+  font-size:16px;
+  border-radius:10px;
 }
 
 /* REGISTROS */
 .registro{
-  background:#f6f8fc;
-  border-left:4px solid var(--azul);
+  background:linear-gradient(90deg,#f6f8fc,#ffffff);
+  background:#ffffff;
+  border-bottom:3px solid var(--amarillo);
+  padding:12px;
+  border-radius:10px;
   padding:10px;
   border-radius:10px;
   margin-bottom:8px;
@@ -208,6 +310,10 @@ input, select, button{
   gap:10px;
   font-size:13px;
   touch-action:manipulation;
+}
+
+.registro:hover{
+  background:#fffdf5;
 }
 
 .registro b{color:var(--azul)}
@@ -277,4 +383,8 @@ button:active{
 
 .switch input:checked + .slider:before{
   transform:translateX(20px);
+}
+
+#msgGuardado{
+  color:var(--verde);
 }
