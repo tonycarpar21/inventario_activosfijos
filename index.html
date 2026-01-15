@@ -23,7 +23,7 @@
 
 <body>
 
-<h2>📦 Inventario de Activos Fijos</h2>
+<h2>Inventario de Activos Fijos</h2>
 
 <!-- PASO 1 -->
 <div class="card inicio-box" id="inicioBox">
@@ -54,7 +54,7 @@
 <div id="tab-registro">
 
 <div class="card">
-  <h3>1️⃣ Identificación del activo</h3>
+  <h3>Identificación del activo</h3>
   <div class="row">
     <div>
       <label>Código *</label>
@@ -62,13 +62,27 @@
     </div>
     <div>
       <label>Código antiguo</label>
-      <input id="codigoAntiguo">
+      
+      <div style="display:flex; gap:8px; align-items:flex-end;">
+        <input id="codigoAntiguo">
+        
+        <button
+  type="button"
+  id="btnVozCodigoAntiguo"
+  class="btn-mic"
+  onclick="dictarCodigoAntiguo()"
+>
+  🎤
+</button>
+
+      </div>
+
     </div>
   </div>
 </div>
 
 <div class="card">
-  <h3>2️⃣ Detalle del activo</h3>
+  <h3>Detalle del activo</h3>
   <label>Descripción</label>
   <input id="descripcion">
 
@@ -82,7 +96,7 @@
 </div>
 
 <div class="card">
-  <h3>3️⃣ Características físicas del activo</h3>
+  <h3>Características físicas del activo</h3>
   <div class="row">
     <div><label>Color</label><input id="color"></div>
     <div><label>Material</label><input id="material"></div>
@@ -93,7 +107,7 @@
 </div>
 
 <div class="card">
-  <h3>4️⃣ Clasificación y estado del activo</h3>
+  <h3>Clasificación y estado del activo</h3>
   <div class="row">
     <div><label>Área</label><input id="area" list="listaAreas">
 <datalist id="listaAreas"></datalist></div>
@@ -110,7 +124,7 @@
 </div>
 
 <div class="card">
-  <h3>5️⃣ Foto del activo</h3>
+  <h3>Foto del activo</h3>
 
   <input 
     type="file"
@@ -126,7 +140,7 @@
 </div>
 
 <div class="card">
-  <h3>6️⃣ Observaciones</h3>
+  <h3>Observaciones</h3>
   <input id="obs">
   <button onclick="guardar()">Guardar activo</button>
   <div id="msgGuardado" style="display:none;color:#1d8f4f;font-weight:600;margin-top:10px">
